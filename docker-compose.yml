@@ -1,0 +1,24 @@
+# docker-compose up -d --build
+# docker exec -it  cyrus-docker bash
+
+version: '3'
+services:
+    impad:
+        container_name: cyrus-docker
+        build:
+            context: .
+        volumes:
+            - /richi/Privat/Data/Cyrus/lib/imap:/var/lib/imap
+            - /richi/Privat/Data/Cyrus/spool/imap:/var/spool/imap
+        ports:
+            - "143:143"
+        hostname: cyrus
+        environment:
+            - mailboxuser=richi
+            - mailboxpassword=password
+            - cyruspassword=password
+
+networks:
+   default:
+       external:
+          name: RichiNet
