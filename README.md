@@ -20,7 +20,7 @@ To build the mailbox environment go to the SetupServer subdirectory and
 
 ```bash
 cd SetupServer
-docker source ../.env && build --build-arg mailboxuser=${mailboxuser} --build-arg mailboxpassword=${mailboxpassword} --build-arg cyruspassword=${cyruspassword} -t richardeigenmann/cyrus-docker-setup:latest .
+source ../.env && docker build --build-arg mailboxuser=${mailboxuser} --build-arg mailboxpassword=${mailboxpassword} --build-arg cyruspassword=${cyruspassword} -t richardeigenmann/cyrus-docker-setup:latest .
 mkdir -p /absolute/path/to/the/exported/directory
 docker run -it --rm --hostname cyrus -v /absolute/path/to/the/exported/directory:/mnt richardeigenmann/cyrus-docker-setup:latest
 
