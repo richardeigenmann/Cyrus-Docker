@@ -12,7 +12,8 @@ RUN zypper --non-interactive in \
   cyradm \
   cyrus-sasl-saslauthd \
   cyrus-sasl-digestmd5 \
-  cyrus-sasl-crammd5
+  cyrus-sasl-crammd5 \
+  sudo
 
 ARG mailboxuser
 ARG mailboxpassword
