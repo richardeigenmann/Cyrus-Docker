@@ -1,4 +1,4 @@
-# docker build -t richardeigenmann/cyrus-docker-setup:latest .
+# source ../.env && docker build --build-arg mailboxuser=${mailboxuser} --build-arg mailboxpassword=${mailboxpassword} --build-arg cyruspassword=${cyruspassword} -t richardeigenmann/cyrus-docker-setup:latest .
 
 # Do these steps to set up the mail server and the host directory:
 
@@ -13,13 +13,11 @@
 
 FROM opensuse:42.3
 
-ENV mailboxuser richi
-ENV mailboxpassword password
-ENV cyruspassword password
+ARG mailboxuser
+ARG mailboxpassword
+ARG cyruspassword
 
 MAINTAINER Richard Eigenmann
-
-USER root
 
 # add the packages needed for the cyrus server and some to work with the shell
 RUN zypper --non-interactive in \
@@ -28,8 +26,7 @@ RUN zypper --non-interactive in \
   cyrus-sasl-saslauthd \
   cyrus-sasl-digestmd5 \
   cyrus-sasl-crammd5 \
-  sudo less \
-  telnet;
+  sudo
 
 # set up the saslauthd accounts (complication: the host name changes all the time!)
 # -u cyrus ensures the account is set up for the hostname cyrus

@@ -14,6 +14,10 @@ RUN zypper --non-interactive in \
   cyrus-sasl-digestmd5 \
   cyrus-sasl-crammd5
 
+ARG mailboxuser
+ARG mailboxpassword
+ARG cyruspassword
+
 # set up the saslauthd accounts (complication: the host name changes all the time!)
 # -u cyrus ensures the account is set up for the hostname cyrus
 # cyrus is the account we need to run the cyradm commands
