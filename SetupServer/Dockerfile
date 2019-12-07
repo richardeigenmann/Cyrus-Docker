@@ -11,7 +11,7 @@
 # cp -r /var/lib/imap /mnt/lib/
 # cp -r /var/spool/imap /mnt/spool/
 
-FROM opensuse:42.3
+FROM opensuse/leap
 
 ARG mailboxuser
 ARG mailboxpassword

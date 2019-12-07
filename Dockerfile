@@ -1,7 +1,8 @@
 # docker-compose up -d --build
 # docker exec -it  cyrus-docker bash
 
-FROM opensuse:42.3
+#FROM opensuse:42.3
+FROM opensuse/leap
 MAINTAINER Richard Eigenmann
 
 USER root
