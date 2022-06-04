@@ -43,6 +43,7 @@ To explore the running container:
 ```bash
 docker exec -it  cyrus-docker bash
 sudo -u cyrus -i cyradm --user cyrus -w <<cyruspassword>> localhost
+sudo -u cyrus -i cyradm --user richi -w <<cyruspassword>> localhost
 # The storage units are, as defined in RFC 2087, groups of 1024 octets (i.e. Kilobytes). see https://www.cyrusimap.org/imap/reference/manpages/systemcommands/cyradm.html
 setquota user.richi STORAGE 6000000
 ```
