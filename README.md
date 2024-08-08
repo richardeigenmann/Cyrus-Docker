@@ -11,7 +11,7 @@ It needs two passwords which we supply in the .env file
 * name and password for mailbox user
 
 ```bash
-mv .env.template .
+cp .env.template .env
 vi .env
 # Define your user and passwords
 ```

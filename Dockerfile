@@ -1,20 +1,21 @@
 # docker-compose up -d --build
 # docker exec -it  cyrus-docker bash
 
-#FROM opensuse:42.3
 FROM opensuse/leap
-MAINTAINER Richard Eigenmann
+LABEL org.opencontainers.image.authors="richard.eigenmann@gmail.com"
 
 USER root
 
 # add the packages needed for the cyrus server and some to work with the shell
+RUN zypper addrepo https://download.opensuse.org/repositories/server:mail/15.6/server:mail.repo
+RUN zypper --gpg-auto-import-keys refresh
 RUN zypper --non-interactive in \
-  cyrus-imapd \
-  cyradm \
-  cyrus-sasl-saslauthd \
-  cyrus-sasl-digestmd5 \
-  cyrus-sasl-crammd5 \
-  sudo
+    cyrus-imapd \
+    cyradm \
+    cyrus-sasl-saslauthd \
+    cyrus-sasl-digestmd5 \
+    cyrus-sasl-crammd5 \
+    sudo
 
 ARG mailboxuser
 ARG mailboxpassword

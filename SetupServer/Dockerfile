@@ -17,16 +17,18 @@ ARG mailboxuser
 ARG mailboxpassword
 ARG cyruspassword
 
-MAINTAINER Richard Eigenmann
+LABEL org.opencontainers.image.authors="richard.eigenmann@gmail.com"
 
 # add the packages needed for the cyrus server and some to work with the shell
+RUN zypper addrepo https://download.opensuse.org/repositories/server:mail/15.6/server:mail.repo
+RUN zypper --gpg-auto-import-keys refresh
 RUN zypper --non-interactive in \
-  cyrus-imapd \
-  cyradm \
-  cyrus-sasl-saslauthd \
-  cyrus-sasl-digestmd5 \
-  cyrus-sasl-crammd5 \
-  sudo
+    cyrus-imapd \
+    cyradm \
+    cyrus-sasl-saslauthd \
+    cyrus-sasl-digestmd5 \
+    cyrus-sasl-crammd5 \
+    sudo
 
 # set up the saslauthd accounts (complication: the host name changes all the time!)
 # -u cyrus ensures the account is set up for the hostname cyrus
