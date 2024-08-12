@@ -9,8 +9,10 @@ services:
         build:
             context: .
             args:
-                - mailboxuser=${mailboxuser}
-                - mailboxpassword=${mailboxpassword}
+                - mailboxuser1=${mailboxuser1}
+                - mailboxpassword1=${mailboxpassword1}
+                - mailboxuser2=${mailboxuser2}
+                - mailboxpassword2=${mailboxpassword2}
                 - cyruspassword=${cyruspassword}
 
         volumes:
@@ -19,8 +21,8 @@ services:
         ports:
             - "143:143"
         hostname: cyrus
-
+        
 networks:
    default:
        external:
-          name: RichiNet
+          name: RichiNetXps
