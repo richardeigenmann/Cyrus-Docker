@@ -15,9 +15,9 @@ services:
                 - mailboxpassword2=${mailboxpassword2}
                 - cyruspassword=${cyruspassword}
 
-        volumes:
-            - /richi/Privat/Data/Cyrus/lib/imap:/var/lib/imap
-            - /richi/Privat/Data/Cyrus/spool/imap:/var/spool/imap
+        #volumes:
+        #    - /richi/Privat/Data/Cyrus/lib/imap:/var/lib/imap
+        #    - /richi/Privat/Data/Cyrus/spool/imap:/var/spool/imap
         ports:
             - "143:143"
         hostname: cyrus

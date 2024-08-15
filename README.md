@@ -1,7 +1,7 @@
 # Cyrus-Docker
 Run Cyrus Imapd in a Docker container
 
-Note: It doesn't work any more! sasl authentication isn't working.
+Note: It doesn't work any more!
 
 Cyrus needs state which it keeps in
 * /var/lib/imap
@@ -15,17 +15,11 @@ It needs two passwords which we supply in the .env file
 ```bash
 vi .env # Define your user and passwords
 vi docker-compose.yml 
-# change the paths to the imap folders to where you want them on the filesystem
 docker create network RichiNetXps  # or change it in the yml file above
 docker-compose up -d --build
 ```
 
 In this example I have user alice and bob with password1 and password2
-
-I map the folders where imapd stores its stuff to outside the container for backups etc.
-
-/richi/Privat/Data/Cyrus/lib/imap to /var/lib/imap in the container
-/richi/Privat/Data/Cyrus/spool/imap to /var/spool/imap in the container
 
 
 To explore the running container:
@@ -34,7 +28,7 @@ docker exec -it  cyrus-docker bash
 
 sasldblistusers2 # lists the users
 
-tail -f /var/log/imapd.log /var/log/auth.log & # tail the log
+tail -f /var/log/imapd.log /var/log/auth.log & # tail the logs in syslog-ng feels like working
 
 ps aux # show the background processes note saslauthd 
 
@@ -61,6 +55,11 @@ testsaslauthd -u alice -p password1 -f /run/sasl2/mux
 ls -l /etc/sasldb2
 chmod g+r /etc/sasldb2
 chmod o+r /etc/sasldb2
+
+su cyrus 
+cyradm --user cyrus -w password3 localhost
+
+pluginviewer
 ```
 
 
