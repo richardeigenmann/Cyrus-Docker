@@ -8,7 +8,8 @@ USER root
 
 # add the packages needed for the cyrus server and some to work with the shell
 #RUN zypper addrepo https://download.opensuse.org/repositories/server:mail/15.6/server:mail.repo
-RUN zypper addrepo https://download.opensuse.org/repositories/home:/buschmann23:/cyrus:/3.8/15.6/home:buschmann23:cyrus:3.8.repo
+#RUN zypper addrepo https://download.opensuse.org/repositories/home:/buschmann23:/cyrus:/3.8/15.6/home:buschmann23:cyrus:3.8.repo
+RUN zypper addrepo https://download.opensuse.org/repositories/home:/buschmann23:/cyrus:/next/15.6/home:buschmann23:cyrus:next.repo
 RUN zypper --gpg-auto-import-keys refresh
 RUN zypper --non-interactive in \
     cyrus-imapd \
@@ -44,7 +45,7 @@ RUN usermod -aG saslauth cyrus
 # create a file entypoint.sh in the root directory
 RUN echo -e "#!/bin/bash\n"\
 "echo Running entrypoint.sh\n"\
-"#/usr/sbin/syslog-ng\n"\
+"/usr/sbin/syslog-ng\n"\
 "saslauthd -a PAM -n1\n"\
 "#sleep 2000000\n" \
 "#/usr/lib/cyrus/master -D -C /etc/imapd.conf -l /var/log/imapd.log\n"\
@@ -57,7 +58,7 @@ RUN chmod +x /entrypoint.sh
 ADD syslog-cyrus.conf /etc/syslog-ng/conf.d/
 
 # create the logfiles
-#RUN touch /var/log/imapd.log /var/log/auth.log && chmod a+rwx /var/log/imapd.log /var/log/auth.log
+RUN touch /var/log/imapd.log /var/log/auth.log
 
 # Create the script that creates the mailboxes for the 2 users
 RUN echo -e "createmailbox user.${mailboxuser1}\ncreatemailbox user.${mailboxuser1}.Archive\nexit" > /createmailbox1.commands
