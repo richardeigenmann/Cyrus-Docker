@@ -8,13 +8,7 @@ services:
         restart: always
         build:
             context: .
-            args:
-                - mailboxuser1=${mailboxuser1}
-                - mailboxpassword1=${mailboxpassword1}
-                - mailboxuser2=${mailboxuser2}
-                - mailboxpassword2=${mailboxpassword2}
-                - cyruspassword=${cyruspassword}
-
+        #uncomment the next lines to have the container use external directories for it's data 
         #volumes:
         #    - /richi/Privat/Data/Cyrus/lib/imap:/var/lib/imap
         #    - /richi/Privat/Data/Cyrus/spool/imap:/var/spool/imap
@@ -24,12 +18,6 @@ services:
         cap_add:
             - SYS_ADMIN
             - SYSLOG
-        #security_opt:
-        #    - seccomp:unconfined
         # this is needed to allow syslog-ng to write logs
         privileged: true
-        
-networks:
-   default:
-       external:
-          name: RichiNetXps
+
