@@ -65,6 +65,12 @@ CYRADMSCRIPT
 ## Further things you can do with the container
 
 ```bash
+# Log in to the user mailbox with cyradm
+docker exec -i  cyrus-docker env TERM=dumb cyradm --user cyrus --password ${cyruspassword} --authz ${mailuser} --auth PLAIN localhost
+
+# Log in to the admin account with cyradm
+docker exec -i  cyrus-docker env TERM=dumb cyradm --user cyrus --password ${cyruspassword} --auth PLAIN localhost
+
 # List the users in the sasldb2 database:
 docker exec -i cyrus-docker sasldblistusers2 
 
